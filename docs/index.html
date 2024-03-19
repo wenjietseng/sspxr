@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Novel Challenges of Safety, Security and Privacy in Extended Reality</title>
+
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SSPXR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    (CHI'22 Workshop)
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Novel Challenges of Safety, Security and
+Privacy in Extended Reality</h1>
+
+</div>
+
+
+<div class="figure" style="text-align: center">
+<img src="assets/img/sspxr-test.jpg" alt="People use VR in an auditorium room [(source)](https://commons.wikimedia.org/wiki/File:Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_(26666393696).jpg)." width="50%" />
+<p class="caption">
+People use VR in an auditorium room <a
+href="https://commons.wikimedia.org/wiki/File:Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_(26666393696).jpg">(source)</a>.
+</p>
+</div>
+<div id="about" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> About</h1>
+<p>Extended Reality (AR/VR/MR) technology is becoming increasingly
+affordable and capable, becoming ever more interwoven with everyday
+life. HCI research has focused largely on innovation around XR
+technology, exploring new use cases and interaction techniques,
+understanding how this technology is used and appropriated etc. However,
+equally important is the investigation and consideration of risks posed
+by such advances, specifically in contributing to new vulnerabilities
+and attack vectors with regards to security, safety, and privacy that
+are unique to XR. For example perceptual manipulations in VR, such as
+redirected walking or haptic retargeting, have been developed to enhance
+interaction, yet subversive use of such techniques has been demonstrated
+to unlock new harms, such as redirecting the VR user into a collision.
+This workshop will convene researchers focused on HCI, XR, Safety,
+Security, and Privacy, with the intention of exploring safety, privacy,
+and security challenges of XR technology. With an HCI lens, workshop
+participants will engage in critical assessment of emerging XR
+technologies and develop an XR research agenda that integrates research
+on interaction technologies and techniques with safety, security and
+privacy research.</p>
+</div>
+<div id="program" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Program</h1>
+<p>The workshop will revolve heavily around interactive discussions
+which will be facilitated within three panel sessions, each focusing on
+topics and themes that are representing the submissions.
+<strong>Participants will present their work in a 10-minute talk as part
+of their panel session.</strong> Each panel session will start with
+introductions and short paper presentations, followed by a panel
+discussion, including audience questions. The panel will consist of one
+author of each submission, one organizer, and/or external expert.
+Organizers will moderate the panel and facilitate the discussion. The
+external expert(s) will be invited to add further expert perspectives to
+the discussion. The workshop will end with a final discussion panel
+consisting of volunteers of the former sessions and a subset of
+organizers and external experts.</p>
+<p>The workshop is planned as <strong>a one-day virtual event</strong>.
+This helps us to be able to engage and lead a discussion with attendees
+that will not travel to CHI 2022. As an infrastructure we will use the
+streaming service provided by CHI 2022 or alternatively setup own
+instances of Big Blue Button or Zoom. The discussion during the panels
+will work as the main form of engaging with the individual topics. All
+participants will be able to contribute to the discussion by raising
+hands or writing in the chat. Throughout the panel discussion, multiple
+organizers will monitor the chat and help participants raise questions
+and participate in the discussion.</p>
+<p>The tentative schedule for the workshop: <strong>April 25th, from
+15:00 CEST (14:00 BST / 09:00 EDT) to 23:00 CEST</strong>.</p>
+<ul>
+<li>15:00 - 15:15 Welcome</li>
+<li>15:15 - 16:00 <strong>Opening Keynote</strong> by <a
+href="https://www.franziroesner.com/">Prof. Franziska Roesner</a></li>
+<li>16:00 - 16:15 Break</li>
+</ul>
+<hr style="border:1px solid gray">
+<ul>
+<li>16:15 - 17:45 <strong>Session 1: Vulnerable Groups in XR</strong>,
+Chairs: <em>Wen-Jie Tseng &amp; Jan Gugenheimer</em>
+<ul>
+<li><a
+href="assets/pdf/SSPXR22_submissions/SSPXR22_paper_1.pdf">Development
+and Evaluation of Virtual Reality Classrooms Through User-Centered
+Design During COVID-19</a> <br><em>Victoria Reddington, Kerstin Haring,
+Sanchari Das, and Daniel Pittman</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_3.pdf">All
+Too Real: A Typology of User Vulnerabilities in Extended Reality</a>
+<br><em>James J. Cummings and Alexis Shore</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_9.pdf">Supporting
+A Safe and Healthy Immersive Environment for Teenagers</a>
+<br><em>Elmira Deldari, Diana Freed, and Yaxing Yao</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_13.pdf">The…Tinderverse?:
+Opportunities and Challenges for User Safety in Extended Reality (XR)
+Dating Apps</a> <br><em>Sarath S. Shanker and Douglas Zytko</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_16.pdf">Facing
+the Illusion and Reality of Safety in Metaverse</a> <br><em>Qingxiao
+Zheng, Tue Ngoc Do, Lingqing Wang, and Yun Huang</em></li>
+<li>Panel Discussion (40 mins)</li>
+</ul></li>
+<li>17:45 - 18:45 Break</li>
+</ul>
+<hr style="border:1px solid gray">
+<ul>
+<li>18:45 - 20:15 <strong>Session 2: Privacy and Security in XR +
+Panel</strong>, Chairs: <em>Michael Nebeling &amp; Mohamed Khamis</em>
+<ul>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_2.pdf">Security
+and Privacy in the Metaverse: The Threat of the Digital Human</a>
+<br><em>Lauren Buck and Rachel McDonnell</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_4.pdf">Extending
+AR Authoring Tools with Built-in Support for Privacy and Security
+Analysis</a> <br><em>Shwetha Rajaram and Michael Nebeling</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_7.pdf">Understanding
+Spatial Orientation of VR Users in the Physical Environment</a>
+<br><em>Wen-Jie Tseng, Eric Lecolinet, Samuel Huron, and Jan
+Gugenheimer</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_8.pdf">Exploring
+Dark Patterns in XR</a> <br><em>Veronika Krauß</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_10.pdf">Safeguarding
+Privacy in the Age of Everyday XR</a> <br><em>Pejman Saeghe, Mark
+McGill, and Mohamed Khamis</em></li>
+<li>Panel Discussion (40 mins)</li>
+</ul></li>
+<li>20:15 - 20:30 Break</li>
+</ul>
+<hr style="border:1px solid gray">
+<ul>
+<li>20:30 - 22:00 <strong>Session 3: Novel Safety Challenges in
+XR</strong>, Chairs: <em>Mark McGill &amp; Abraham Mhaidli</em>
+<ul>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_5.pdf">Safety
+in the Emerging Holodeck Applications</a> <br> <em>Shahram
+Ghandeharizadeh and Luis Garcia</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_6.pdf">Exploring
+Memory Manipulation in Extended Reality Using Scenario Construction</a>
+<br> <em>Elise Bonnail, Wen-Jie Tseng, Eric Lecolinet, Samuel Huron, and
+Jan Gugenheimer</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_11.pdf">Perception
+Hacking for 2D Cursorjacking in Virtual Reality</a> <br> <em>Zihao Su,
+Faysal Hossain Shezan, Yuan Tian, David Evans, and Seongkook
+Heo</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_14.pdf">Virtual
+Spillover of Preferences and Behavior from Extended Reality</a> <br>
+<em>Matija Franklin</em></li>
+<li><a
+href="https://wenjietseng.com/assets/pdf/SSPXR22_submissions/SSPXR22_paper_15.pdf">Potential
+Risks of Ultra Realistic Haptic Devices in XR</a> <br> <em>Gaëlle
+Clavelin, Jan Gugenheimer, and Mickael Bouhier</em></li>
+<li>Panel Discussion (40 mins)</li>
+</ul></li>
+<li>22:00 - 22:15 Break</li>
+</ul>
+<hr style="border:1px solid gray">
+<ul>
+<li>22:15 - 23:00 Reflection and Overall discussion with panelists and
+workshop participants</li>
+<li>23:00 Wrap Up</li>
+</ul>
+<p>Note: This workshop will not be recorded or streamed.</p>
+</div>
+<div id="opening-keynote" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Opening Keynote</h1>
+<p><strong>Title: Security and Privacy for Extended Reality: The Next 10
+Years</strong></p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/franzi2.jpg" />
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bio:</strong> Franziska (Franzi) Roesner is an Associate
+Professor in the Paul G. Allen School of Computer Science &amp;
+Engineering at the University of Washington, where she co-directs the
+Security and Privacy Research Lab. Her research focuses broadly on
+computer security and privacy for end users of existing and emerging
+technologies. Her work has studied topics including online tracking and
+advertising, security and privacy for sensitive user groups, security
+and privacy in emerging augmented reality (AR) and IoT platforms, and
+online mis/disinformation. She is the recipient of a Consumer Reports
+Digital Lab Fellowship, an MIT Technology Review “Innovators Under 35”
+Award, an Emerging Leader Alumni Award from the University of Texas at
+Austin, a Google Security and Privacy Research Award, and an NSF CAREER
+Award. She serves on the USENIX Security and USENIX Enigma Steering
+Committees. She received her PhD from the University of Washington in
+2014 and her BS from UT Austin in 2008. Her website is at <a
+href="https://www.franziroesner.com">www.franziroesner.com</a>.</p>
+<!-- <hr style="border:2px solid gray">
+
+#### Proceedings
+
+Coming soon! -->
+<!-- <hr style="border:2px solid gray">
+
+#### Post-Workshop Plan
+
+Coming soon! -->
+<hr style="border:2px solid gray">
+</div>
+<div id="call-for-participation" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Call for
+Participation</h1>
+<p>We invite two types of submissions: <strong>a 2-page position
+statement</strong> or <strong>a 4-page research statement</strong>. The
+2-page position statement can be a motivation of interest and present an
+opinion piece or critical position that fits into the larger discussion
+and topics of the workshop (contribution type “Opinion” as defined by <a
+href="https://dl.acm.org/doi/abs/10.1145/2907069">Wobbrock and Kienz,
+2016</a>). The 4-page research statement can be a presentation of
+already ongoing or planned research work in the topics of the
+workshop.</p>
+<ul>
+<li>Please use the <strong>template for publication</strong> in <a
+href="https://chi2022.acm.org/for-authors/presenting/papers/chi-publication-formats/">CHI
+2022 Publication Format</a>.</li>
+<li><strong>Submissions are not anonymous and should include all author
+names, affiliations, and contact information.</strong></li>
+<li>Submission should be in <strong>double-column</strong>, and
+<strong>references excluded</strong>.</li>
+<li>LaTeX template user, please use
+<code>\documentclass[sigconf]{acmart}</code>.</li>
+<li>Word template user, please refer to Interim Template <a
+href="https://www.acm.org/publications/proceedings-template">on this
+page</a>.</li>
+</ul>
+<p>Exemplar topics might come from within the field of, but are not
+limited to:</p>
+<ul>
+<li>Privacy implications for the user of XR</li>
+<li>Privacy implications for bystanders in XR</li>
+<li>Safety concerns around physiological harm to the XR user</li>
+<li>Safety concerns around psychological harm to the XR user</li>
+<li>Security challenges for future XR technology</li>
+<li>Security challenges on manipulating the XR user</li>
+<li>Immersive Attacks and Human Perceptual Hacking</li>
+<li>Societal implications of XR technology</li>
+</ul>
+<p>Once accepted, <strong>one author will have the chance to present
+their work in a 10-minute talk, followed by participation in a 30-40
+minute panel discussion around the topic of the submission</strong>. The
+workshop will consist of three panel session, each consisting of four
+authors, one organizer and one external expert. We are highly
+encouraging submissions that are presenting new perspectives on XR, HCI
+and Safety, Security and Privacy. Submissions are not expected to be
+finished research projects but should be seen more as motivational
+and/or provocative piece. The workshop organizers aim for a mix of
+participants in terms of experience and research topics to maximize
+diversity of interests and viewpoints at the workshop.</p>
+<p>Please note that one author of each accepted position paper must
+attend the workshop. Attendance can be either in person or remote. All
+workshop participants must register for both the workshop and for at
+least one day of ACM CHI 2022.</p>
+<center>
+<h4>
+Important Dates
+</h4>
+<td>
+<del>Submission Deadline: 24th February (Anywhere on Earth)</del> <br>
+<del><strong>Submission Deadline:</strong> 2nd March (Anywhere on
+Earth)</del> <br> <del><strong>Submision via EasyChair:</strong> <a
+href="https://easychair.org/my/conference?conf=sspxr22#">https://easychair.org/my/conference?conf=sspxr22#</a></del>
+<br> <del><strong>Notification:</strong> 13th of March</del> <br>
+<strong>April 25th, from 15:00 CEST (14:00 BST / 09:00 EDT) to 23:00
+CEST</strong>
+</td>
+</center>
+<hr style="border:2px solid gray">
+</div>
+<div id="organizers" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Organizers</h1>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-jan.jpg" />
+</td>
+<td>
+<strong>Jan Gugenheimer</strong> <br> Jan Gugenheimer (<a
+href="https://www.gugenheimer.com">www.gugenheimer.com</a>) is an
+Assistant Professor at the Institute Polytechnique de Paris. His
+research focuses around upcoming social challenges for mixed reality
+technology and how to embed HMDs into the fabric of our daily lives.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-wj.jpg" />
+</td>
+<td>
+<strong>Wen-Jie Tseng</strong> <br> Wen-Jie Tseng (<a
+href="https://www.wenjietseng.com">www.wenjietseng.com</a>) is a 2nd
+year PhD student at Telecom Paris, IP Paris. His research explores
+safety issues in XR, particularly focusing on physical harm in VR.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-mhaidli.jpg" />
+</td>
+<td>
+<strong>Abraham Mhaidli</strong> <br> Abraham Mhaidli (<a
+href="https://mhaidli.github.io/">mhaidli.github.io</a>) is a PhD
+Candidate at the School of Information at the University of Michigan.
+His research explores ethical issues in Extended Reality (XR) contexts,
+with a particular focus on XR advertising.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-uulm-rixen.jpg" />
+</td>
+<td>
+<strong>Jan-Ole Rixen</strong> <br> Jan-Ole Rixen (<a
+href="https://www.uni-ulm.de/in/mi/institut/mitarbeiter/jan-rixen/">www.uni-ulm.de/in/mi/institut/mitarbeiter/jan-rixen/</a>)
+is a 3rd year PhD student at Ulm University in Germany. His research
+focuses on exploring how the introduction of XR and the ability to
+augment people can impact interpersonal communication.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-MarkMcGill.jpg" />
+</td>
+<td>
+<strong>Mark McGill</strong> <br> Mark McGill (<a
+href="https://www.markmcgill.co.uk">www.markmcgill.co.uk</a>) is a
+lecturer (assistant professor) in the School of Computing Science at the
+University of Glasgow. His research explores the future of XR
+productivity (e.g. virtual workspaces, ergonomics, augmented
+peripherals) and XR-enabled passenger experiences.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-mn2020.jpg" />
+</td>
+<td>
+<strong>Michael Nebeling</strong> <br> Michael Nebeling (<a
+href="http://www.michael-nebeling.de">www.michael-nebeling.de</a>) is an
+Assistant Professor at the University of Michigan. In his prior
+research, he developed novel XR prototyping methods and tools with the
+goal of empowering novice XR content creators. In his current work, he
+studies how to best guide XR designers in creating safe and inclusive XR
+experiences.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-mohamed.jpg" />
+</td>
+<td>
+<strong>Mohamed Khamis</strong> <br> Mohamed Khamis (<a
+href="http://www.mkhamis.com">www.mkhamis.com</a>) is an Assistant
+Professor at the University of Glasgow. His research is at the
+intersection of Human-Computer Interaction and Security. He is
+interested in understanding the privacy, security and ethical challenges
+in XR and proposing novel solutions to mitigate said challenges.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-schaub_florian.jpg" />
+</td>
+<td>
+<strong>Florian Schaub</strong> <br> Florian Schaub (<a
+href="https://www.si.umich.edu/people/florian-schaub">www.si.umich.edu/people/florian-schaub</a>)
+is an Assistant Professor at the University of Michigan. His research is
+at the intersection of privacy, security, human-computer interaction,
+and public policy. He is interested in understanding the privacy and
+safety implications of emerging technologies such as XR and advance
+human-centric solutions for safe user experiences.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<img src="assets/img/sspxr-sanchari.jpg" />
+</td>
+<td>
+<strong>Sanchari Das</strong> <br> Sanchari Das (<a
+href="https://www.drsancharidas.com/">www.drsancharidas.com</a>) is an
+Assistant Professor at the University of Denver (Computer Science). Her
+research lab - Inclusive Security and Privacy - focused Innovative
+Research in Information Technology (InSPIRIT) focuses on enhancing
+privacy and security for Online Communication and Devices including IoT,
+AR/VR/MR, and others.
+</td>
+</tr>
+</tbody>
+</table>
+<hr style="border:2px solid gray">
+</div>
+<div id="acknowledgments" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Acknowledgments</h1>
+<p>This workshop was partially conducted within the HARMFULVR JCJC
+project (ANR-21-CE33-0013) funded by French National Research Agency
+(ANR).</p>
+<p><img src="assets/img/ANR-logo.png" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
